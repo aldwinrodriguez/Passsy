@@ -23,16 +23,16 @@ Write file when prompted to initiate the App
 <img src="screenshots/file.gif" alt="alt text" width="756" height="305">   
   
 ### "enc" to Encode   
-<img src="screenshots/enc.gif" alt="alt text" width="504" height="305">   
+<img src="screenshots/enc.gif" alt="alt text" width="756" height="305">   
 
 ### "ovr" to Override      
-<img src="screenshots/ovr.gif" alt="alt text" width="504" height="305"><img src="screenshots/ovrdec.gif" alt="alt text" width="504" height="305">       
+<img src="screenshots/ovr.gif" alt="alt text" width="756" height="305"><img src="screenshots/ovrdec.gif" alt="alt text" width="756" height="305">       
 
 ### "dec" to Decypher      
-<img src="screenshots/dec.gif" alt="alt text" width="504" height="305">   
+<img src="screenshots/dec.gif" alt="alt text" width="756" height="305">   
 
 ### "see" to see all Accounts     
-<img src="screenshots/see.gif" alt="alt text" width="504" height="305">    
+<img src="screenshots/see.gif" alt="alt text" width="756" height="305">    
   
 any questions, email aldwindrodriguez@gmail.com.
 
