@@ -8,19 +8,19 @@
 Very simple and straightforward. Store password, get password, override password.
    
 ## Important !!:
-Write file when prompted to initiate the App
+Write file when prompted to initiate the App  
 <img src="screenshots/screenshot1.png" alt="alt text" width="671" height="164">
 
 ## Steps on how to use it:
 
 ### Commands:
 
-Write:
-file to initiate this project (THIS IS IMPORTANT!! BEFORE YOU CAN USE THE APP !!)
-enc to Encode
-ovr to Override
-dec to Decypher
-see to see all Accounts
+Write:  
+file to initiate this project (THIS IS IMPORTANT!! BEFORE YOU CAN USE THE APP !!)  
+enc to Encode  
+ovr to Override  
+dec to Decypher  
+see to see all Accounts  
 
 any questions, email aldwindrodriguez@gmail.com.
 
