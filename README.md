@@ -4,7 +4,7 @@
 
 ### Description: The app uses the latest cryptechnology, salting and encryption. Creates unreadable and encrypted .txt file (located in enc folder, must initiate the App with the command "file") to store passwords so nobody can see or read your passwords.
 ### E.g.
-<img src="screenshots/screenshot2.png" alt="alt text" width="540" height="700">
+<img src="screenshots/screenshot2.png" alt="alt text" width="551" height="329">
 Very simple and straightforward. Store password, get password, override password.
    
 ## Important !!:
