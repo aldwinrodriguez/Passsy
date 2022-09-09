@@ -1,6 +1,6 @@
 # Passy
 
-## Summary: Store passwords locally to your computer wihout having to pay or rely on online services which sometimes unreliable and hackable.
+## Summary: Store passwords locally to your computer without having to pay or rely on online services which sometimes unreliable and hackable.
 
 ### Description: The app uses the latest cryptechnology, salting and encryption. Creates unreadable and encrypted .txt file (located in enc folder, must initiate the App with the command "file") to store passwords so nobody can see or read your passwords.
 ### E.g.
