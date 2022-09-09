@@ -3,16 +3,18 @@ from cryptography.fernet import Fernet
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-from getpass import getpass 
+from getpass import getpass
 from cryptography.fernet import InvalidToken
 
 import sys
 import ast
+import os
+
 
 def makeKey(arg1, arg2):
-    p1 = arg1 
-    password = p1.encode() 
-    salt = arg2.encode() 
+    p1 = arg1
+    password = p1.encode()
+    salt = arg2.encode()
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
         length=32,
@@ -20,23 +22,26 @@ def makeKey(arg1, arg2):
         iterations=100000,
         backend=default_backend()
     )
-    key = base64.urlsafe_b64encode(kdf.derive(password)) 
+    key = base64.urlsafe_b64encode(kdf.derive(password))
     return key
 
-def encrpyt(keyw, cpassw):
-    passw = getpass('Social Password: ')
+
+def encrpyt(keyw, cpassw, social):
+    passw = getpass('Account Password: ')
 
     message = passw.encode()
     f = Fernet(keyw)
 
     encrypted = f.encrypt(message)
-    keys= {}
+    keys = {}
 
     fileEncryptionPassword = getpass('File Password: ')
-    firstpart, secondpart = fileEncryptionPassword[:len(fileEncryptionPassword)//2], fileEncryptionPassword[len(fileEncryptionPassword)//2:]
+    firstpart, secondpart = fileEncryptionPassword[:len(
+        fileEncryptionPassword)//2], fileEncryptionPassword[len(fileEncryptionPassword)//2:]
     encryptionKey = makeKey(firstpart, secondpart)
-    
+
     try:
+
         data = list(filter(None, decFile(encryptionKey).split(',')))
         for element in data:
             key, val = element.split(' : ')
@@ -48,27 +53,34 @@ def encrpyt(keyw, cpassw):
             data.append(text)
             data = ''.join(data)
             encFile(encryptionKey, data.encode())
-            print("Saved.")
+
+            output_file = './enc/accounts.txt'
+            with open(output_file, 'a') as f:
+                f.write(social + "\n")
+
+            print("\nSaved.")
         else:
-            return print("Data already exists.")
+            return print("\nData already exists.")
     except:
-        print('Encrypting Failed.')
+        print('\nEncrypting Failed.')
+
 
 def encrpytOverride(keyw, cpassw):
-    passw = getpass('Social Password: ')
+    passw = getpass('Account Password: ')
     message = passw.encode()
     f = Fernet(keyw)
 
     encrypted = f.encrypt(message)
-    keys= {}
+    keys = {}
 
     fileEncryptionPassword = getpass('File Password: ')
-    firstpart, secondpart = fileEncryptionPassword[:len(fileEncryptionPassword)//2], fileEncryptionPassword[len(fileEncryptionPassword)//2:]
+    firstpart, secondpart = fileEncryptionPassword[:len(
+        fileEncryptionPassword)//2], fileEncryptionPassword[len(fileEncryptionPassword)//2:]
     encryptionKey = makeKey(firstpart, secondpart)
 
     try:
         data = list(filter(None, decFile(encryptionKey).split(',')))
-    
+
     except:
         print('\nOverriding Failed.')
 
@@ -79,26 +91,27 @@ def encrpytOverride(keyw, cpassw):
 
         to_look_for = cpassw
         if to_look_for not in keys:
-            return print("Account doesn't exist.")
+            return print("\nAccount doesn't exist.")
         else:
             keys[to_look_for] = encrypted.decode() + "\n"
             data = convertToString(keys)
             data = ''.join(data)
             encFile(encryptionKey, data.encode())
-            print('Overrided.')
-    
+            print('\nSuccess\Overrided.')
+
 
 def convertToString(obj):
     data = []
     for key in obj:
         toAppend = key + " : " + obj[key]
-        data.append(toAppend) 
+        data.append(toAppend)
     return data
 
 
 def encFile(encryptionPassword, data):
     try:
-        key = encryptionPassword # Use one of the methods to get a key (it must be the same when decrypting)
+        # Use one of the methods to get a key (it must be the same when decrypting)
+        key = encryptionPassword
         output_file = './enc/file.encrypted'
 
         fernet = Fernet(key)
@@ -107,14 +120,16 @@ def encFile(encryptionPassword, data):
             f.write(encrypted)
 
     except InvalidToken:
-        print('Encrypting File Failed : Incorrect Password.')
-    
+        print('\nEncrypting File Failed : Incorrect Password.')
+
     except FileNotFoundError as e:
-        print('File not found. Create file first.')
+        print('\nFile not found. Create file first.')
+
 
 def decFile(encryptionPassword):
     try:
-        key = encryptionPassword # Use one of the methods to get a key (it must be the same as used in encrypting)
+        # Use one of the methods to get a key (it must be the same as used in encrypting)
+        key = encryptionPassword
         input_file = './enc/file.encrypted'
 
         with open(input_file, 'rb') as f:
@@ -125,19 +140,21 @@ def decFile(encryptionPassword):
         result = encrypted.decode().replace('\n', '\n,')
 
     except InvalidToken:
-        return print('Decrypting File Failed : Incorrect Password.')
-    
+        return print('\nDecrypting File Failed : Incorrect Password.')
+
     except FileNotFoundError:
-        raise FileNotFoundError('File not found. Create file first.')
+        raise FileNotFoundError('\nFile not found. Create file first.')
 
     else:
         return result
+
 
 def decrypt(wkey, seckey):
     try:
         wval = ''
         fileEncryptionPassword = getpass('File Password: ')
-        firstpart, secondpart = fileEncryptionPassword[:len(fileEncryptionPassword)//2], fileEncryptionPassword[len(fileEncryptionPassword)//2:]
+        firstpart, secondpart = fileEncryptionPassword[:len(
+            fileEncryptionPassword)//2], fileEncryptionPassword[len(fileEncryptionPassword)//2:]
         encryptionKey = makeKey(firstpart, secondpart)
 
         data = list(filter(None, decFile(encryptionKey).split(',')))
@@ -151,17 +168,23 @@ def decrypt(wkey, seckey):
         f = Fernet(wkey)
         decrypted = f.decrypt(encrypted)
 
-        print(decrypted.decode())
+        print("\nYour password is: " + decrypted.decode())
     except FileNotFoundError as e:
-        print(e)
+        print("\n" + e)
     except InvalidToken:
-        print('Decrypting Failed : Incorrect Password.')
+        print('\nDecrypting Failed : Incorrect Password.')
     except:
-        print('Decryption Failed.')
+        print('\nDecryption Failed.')
+
 
 def makeNewFile():
+    current_directory = os.getcwd()
+    final_directory = os.path.join(current_directory, r'enc')
+    if not os.path.exists(final_directory):
+        os.makedirs(final_directory)
     fileEncryptionPassword = getpass('File Password: ')
-    firstpart, secondpart = fileEncryptionPassword[:len(fileEncryptionPassword)//2], fileEncryptionPassword[len(fileEncryptionPassword)//2:]
+    firstpart, secondpart = fileEncryptionPassword[:len(
+        fileEncryptionPassword)//2], fileEncryptionPassword[len(fileEncryptionPassword)//2:]
     encryptionKey = makeKey(firstpart, secondpart)
 
     try:
@@ -174,28 +197,33 @@ def makeNewFile():
         with open(output_file, 'wb') as f:
             f.write(encrypted)
     except FileNotFoundError:
-        print("No directory: Create a Folder named 'enc'")
+        print("\nFolder not found: Create a Folder named 'enc'")
 
 
 if __name__ == "__main__":
-    command = getpass('Command ? ')
-    
+    command = input(
+        # 'Command ? \n\nwrite:\nenc to Encode\novr to Override\ndec to Decypher\nsee to see all Accounts\n\n--> ')
+        'Command ? \n\nwrite:\nfile to initiate this project (THIS IS IMPORTANT!! BEFORE YOU CAN USE THE APP !!)\nenc to Encode\novr to Override\ndec to Decypher\nsee to see all Accounts\n\n---> ')
+
     if command == 'ovr':
-        social = getpass('Account ? ')
-        salt = getpass('Password: ')
+        social = input('\nFor what Account ? ')
+        salt = input('Salt/Security/Favorite word: ')
         key = makeKey(social, salt)
         encrpytOverride(key, social)
     elif command == 'enc':
-        social = getpass('Account ? ')
-        salt = getpass('Password: ')
+        social = input('\nFor what Account ? ')
+        salt = input('Salt/Security/Favorite word: ')
         key = makeKey(social, salt)
-        encrpyt(key, social)
+        encrpyt(key, social, social)
     elif command == 'dec':
-        social = getpass('Account ? ')
-        salt = getpass('Password: ')
+        social = input('\nFor what Account ? ')
+        salt = input('Salt/Security/Favorite word: ')
         key = makeKey(social, salt)
         decrypt(key, social)
     elif command == 'file':
         makeNewFile()
+    elif command == 'see':
+        f = open("./enc/accounts.txt", "r")
+        print("\nYour accounts are:\n" + f.read())
     else:
-        print('Command not found.')
+        print('\nCommand not found.')
