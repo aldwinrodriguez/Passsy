@@ -6,6 +6,9 @@
 ### E.g.
 <img src="screenshots/screenshot2.png" alt="alt text" width="551" height="329">
 Very simple and straightforward. Store password, get password, override password.
+
+## Demo:
+<img src="screenshots/enc.gif" alt="alt text" width="1008" height="406">
    
 ## Important !!:
 Write file when prompted to initiate the App  
@@ -17,10 +20,16 @@ Write file when prompted to initiate the App
 
 Write:  
 file to initiate this project (THIS IS IMPORTANT!! BEFORE YOU CAN USE THE APP !!)  
+<img src="screenshots/file.gif" alt="alt text" width="1008" height="406">
 enc to Encode  
+<img src="screenshots/enc.gif" alt="alt text" width="1008" height="406">
 ovr to Override  
+<img src="screenshots/ovr.gif" alt="alt text" width="1008" height="406">  
+<img src="screenshots/ovrdec.gif" alt="alt text" width="1008" height="406">
 dec to Decypher  
+<img src="screenshots/dec.gif" alt="alt text" width="1008" height="406">
 see to see all Accounts  
+<img src="screenshots/see.gif" alt="alt text" width="1008" height="406">
 
 any questions, email aldwindrodriguez@gmail.com.
 
