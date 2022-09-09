@@ -19,20 +19,19 @@ Write file when prompted to initiate the App
 ## Commands:
 
 ### Write:  
-### file to initiate this project (THIS IS IMPORTANT!! BEFORE YOU CAN USE THE APP !!)    
+### "file" to initiate this project (THIS IS IMPORTANT!! BEFORE YOU CAN USE THE APP !!)    
 <img src="screenshots/file.gif" alt="alt text" width="504" height="203">   
   
-### enc to Encode   
+### "enc" to Encode   
 <img src="screenshots/enc.gif" alt="alt text" width="504" height="203">   
 
-### ovr to Override      
-<img src="screenshots/ovr.gif" alt="alt text" width="504" height="203">      
-<img src="screenshots/ovrdec.gif" alt="alt text" width="504" height="203">   
+### "ovr" to Override      
+<img src="screenshots/ovr.gif" alt="alt text" width="504" height="203"><img src="screenshots/ovrdec.gif" alt="alt text" width="504" height="203">     
 
-### dec to Decypher      
+### "dec" to Decypher      
 <img src="screenshots/dec.gif" alt="alt text" width="504" height="203">   
 
-### see to see all Accounts     
+### "see" to see all Accounts     
 <img src="screenshots/see.gif" alt="alt text" width="504" height="203">    
   
 any questions, email aldwindrodriguez@gmail.com.
