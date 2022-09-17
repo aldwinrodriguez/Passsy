@@ -1,4 +1,4 @@
-# Passy
+# Passsy
 
 ## Summary: Store passwords locally to your computer without having to pay or rely on online services which sometimes unreliable and hackable.
 
