@@ -36,4 +36,3 @@ Write file when prompted to initiate the App
 <img src="screenshots/see.gif" alt="alt text" width="756" height="305">    
   
 any questions, email aldwindrodriguez@gmail.com.
-
